@@ -76,7 +76,7 @@ export default function MyComponent() {
           setStatusMessage('Time left:');
         }
       }
-    }, 1000);
+    }, 80);
 
     return () => clearInterval(timerId);
   }, [todos]);
@@ -92,7 +92,7 @@ export default function MyComponent() {
           <div className="rounded bg-red-500 px-2 py-1 text-white">Paused</div>
         ) : null}
 
-        <h1 id="timeLeft" className={'text-3xl'}>
+        <h1 id="timeLeft" style={{ fontSize: '200px' }}>
           {timeLeft}
         </h1>
       </div>

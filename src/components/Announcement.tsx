@@ -14,15 +14,13 @@ const Announcement = ({ announcement }) => {
       {announcement.map((item, index) => (
         <div
           key={index}
-          className="relative mb-2 rounded bg-gray-100 p-2 text-blue-800"
+          className="mb-2 flex flex-row items-center justify-start gap-2 rounded bg-gray-100 p-4 text-blue-800"
         >
           {/* Markdown content */}
-          <ReactMarkdown>{item.content}</ReactMarkdown>
-
-          {/* Time bubble */}
-          <div className="absolute right-0 top-0 rounded-full bg-blue-500 px-2 py-1 text-xs text-white">
-            {formatTime(item.createdAt)}
+          <div className={'border-2 bg-gray-300 p-2'}>
+            ⏰ {formatTime(item.createdAt)}
           </div>
+          <ReactMarkdown>{item.content}</ReactMarkdown>
         </div>
       ))}
     </div>
