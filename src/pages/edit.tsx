@@ -36,10 +36,6 @@ const UpdatePage = () => {
   const [announcementJSON, setAnnouncementJSON] = useState('');
   const [isJSONValid, setIsJSONValid] = useState(true);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleAnnouncementJSONChange = (e) => {
     const newJSON = e.target.value;
     try {
@@ -66,6 +62,10 @@ const UpdatePage = () => {
     });
     setShowCreatedTime(response.data.showCreatedTime);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleUpdate = async () => {
     if (!isJSONValid) return;
