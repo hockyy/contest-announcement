@@ -4,7 +4,8 @@
 
 body {
     font-family: "IBM Plex Mono", "Open Sans", sans-serif;
-    background-color: #003d7c;
+    background-color: #00184d;
+    color: white;
 }
 
 .unselectable {
