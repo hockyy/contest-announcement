@@ -16,7 +16,7 @@ const Announcement = ({ announcement }) => {
         <div
           key={index}
           className="mb-2 flex flex-row items-center justify-start gap-5 rounded bg-gray-100 px-4 py-1 text-blue-800"
-          style={{ fontSize: '30px' }}
+          style={{ fontSize: '30px', fontWeight: '500' }}
         >
           <div
             className={
@@ -27,6 +27,13 @@ const Announcement = ({ announcement }) => {
           </div>
           <ReactMarkdown
             components={{
+              strong: ({ node, ...props }) => (
+                <strong style={{ fontWeight: '800' }} {...props} />
+              ),
+              p: ({ node, ...props }) => (
+                <p style={{ fontWeight: '600' }} {...props} />
+              ),
+
               code: ({ node, inline, className, children, ...props }) => {
                 // Style inline `code`
                 if (inline) {
