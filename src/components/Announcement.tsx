@@ -14,10 +14,11 @@ const Announcement = ({ announcement }) => {
       {announcement.map((item, index) => (
         <div
           key={index}
-          className="mb-2 flex flex-row items-center justify-start gap-2 rounded bg-gray-100 p-4 text-blue-800"
+          className="mb-2 flex flex-row items-center justify-start gap-2 rounded bg-gray-100 px-4 py-1 text-blue-800"
+          style={{ fontSize: '30px' }}
         >
           {/* Markdown content */}
-          <div className={'border-2 bg-gray-300 p-2'}>
+          <div className={'border-2 bg-gray-300 px-3 py-1 my-2 font-bold'}>
             ⏰ {formatTime(item.createdAt)}
           </div>
           <ReactMarkdown>{item.content}</ReactMarkdown>
