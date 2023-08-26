@@ -6,7 +6,7 @@ export default function MyComponent() {
     announcement: [],
     startTime: null, // You could set a future start time here
     isPaused: false,
-    durationInSeconds: 5 * 3600
+    durationInSeconds: 5 * 3600,
   });
 
   const [timeLeft, setTimeLeft] = useState('0:00:00');
@@ -32,18 +32,28 @@ export default function MyComponent() {
 
   useEffect(() => {
     const timerId = setInterval(() => {
+      if(todos.isPaused) return;
       const currentTime = Date.now();
 
       if (!todos.startTime || currentTime < todos.startTime) {
         // Contest has not started yet
-        const timeUntilStart = todos.startTime ? (todos.startTime - currentTime) / 1000 : 0;
+        const timeUntilStart = todos.startTime
+          ? (todos.startTime - currentTime) / 1000
+          : 0;
         const hours = Math.floor(timeUntilStart / 3600);
         const minutes = Math.floor((timeUntilStart % 3600) / 60);
         const seconds = Math.floor(timeUntilStart % 60);
-        setTimeLeft(`${String(hours).padStart(1, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
+        setTimeLeft(
+          `${String(hours).padStart(1, '0')}:${String(minutes).padStart(
+            2,
+            '0'
+          )}:${String(seconds).padStart(2, '0')}`
+        );
         setStatusMessage('The contest will start in:');
       } else {
-        const timeElapsedInSeconds = Math.floor((currentTime - todos.startTime) / 1000);
+        const timeElapsedInSeconds = Math.floor(
+          (currentTime - todos.startTime) / 1000
+        );
 
         if (timeElapsedInSeconds >= todos.durationInSeconds) {
           // Contest is done
@@ -52,13 +62,18 @@ export default function MyComponent() {
         } else {
           // Contest has started
           if (!todos.isPaused) {
-            const timeRemainingInSeconds = todos.durationInSeconds - timeElapsedInSeconds;
+            const timeRemainingInSeconds =
+              todos.durationInSeconds - timeElapsedInSeconds;
 
             const hours = Math.floor(timeRemainingInSeconds / 3600);
             const minutes = Math.floor((timeRemainingInSeconds % 3600) / 60);
             const seconds = timeRemainingInSeconds % 60;
 
-            setTimeLeft(`${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
+            setTimeLeft(
+              `${hours}:${String(minutes).padStart(2, '0')}:${String(
+                seconds
+              ).padStart(2, '0')}`
+            );
             setStatusMessage('Time left:');
           }
         }
@@ -69,16 +84,19 @@ export default function MyComponent() {
   }, [todos]);
 
   return (
-    <div className='flex h-screen flex-col items-center justify-center'>
-      <h6 id='status-message' className='mb-2'>
+    <div className="flex h-screen flex-col items-center justify-center">
+      <h6 id="status-message" className="mb-2">
         {statusMessage}
       </h6>
       {/* Header */}
-      <div id='header' className='text-center'>
-        <h6 id='title' className='mb-0'>
-          {todos.isPaused ? '(Paused)' : '(Active)'}
-        </h6>
-        <h1 id='timeLeft' className={'text-3xl'}>{timeLeft}</h1>
+      <div id="header" className="text-center">
+        {todos.isPaused ? (
+          <div className="rounded bg-red-500 px-2 py-1 text-white">Paused</div>
+        ) : null}
+
+        <h1 id="timeLeft" className={'text-3xl'}>
+          {timeLeft}
+        </h1>
       </div>
     </div>
   );
