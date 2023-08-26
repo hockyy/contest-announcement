@@ -18,12 +18,5 @@ export const BeautifulButton = ({
     >
       {message}
     </AwesomeButton>
-    // <button
-    //   disabled={disabled}
-    //   className={`rounded-lg bg-blue-200 px-3 py-1 text-black hover:bg-blue-300 ${className} disabled:bg-blue-50 disabled:text-gray-500`}
-    //   onClick={onClick}
-    // >
-    //   {message}
-    // </button>
   );
 };

@@ -82,19 +82,30 @@ export default function MyComponent() {
   }, [todos]);
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
-      <h6 id="status-message" className="mb-2">
-        {statusMessage}
-      </h6>
-      {/* Header */}
-      <div id="header" className="text-center">
+    <div className="flex flex-col items-center justify-center">
+      <div
+        id="status-message"
+        className={'flex flex-col items-center justify-center gap-4 pt-5'}
+      >
         {todos.isPaused ? (
-          <div className="rounded bg-red-500 px-2 py-1 text-white">Paused</div>
+          <div
+            className="rounded bg-red-500 px-2 py-1 text-white"
+            style={{ fontSize: '30px' }}
+          >
+            Paused
+          </div>
         ) : null}
-
-        <h1 id="timeLeft" style={{ fontSize: '200px' }}>
-          {timeLeft}
-        </h1>
+        <strong style={{ fontSize: '30px' }}>⏳ {statusMessage}</strong>
+      </div>
+      {/* Header */}
+      <div id="timeLeft" className={'m-0 p-0'} style={{ fontSize: '200px' }}>
+        {timeLeft}
+      </div>
+      <div
+        id="status-message"
+        className={'mb-2 flex flex-col items-center justify-center gap-4'}
+      >
+        <strong style={{ fontSize: '30px' }}>📢 Announcement</strong>
       </div>
       <Announcement announcement={todos.announcement} />
     </div>

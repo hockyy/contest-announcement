@@ -18,11 +18,12 @@ let todos: Todo = {
     },
     {
       createdAt: new Date('2023-07-26 09:00').getTime(),
-      content: 'Make sure to read the rules and guidelines',
+      content: '**Make sure to read the rules and guidelines**',
     },
     {
       createdAt: new Date('2023-07-27 10:00').getTime(),
-      content: 'The contest is now open for registration',
+      content:
+        '**The contest is now open for registration, the password for each pc is `ioi`**',
     },
   ],
   startTime: new Date('2023-08-26 13:00').getTime(),

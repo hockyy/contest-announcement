@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import ReactMarkdown from 'react-markdown';
 
 const Announcement = ({ announcement }) => {
@@ -10,18 +11,46 @@ const Announcement = ({ announcement }) => {
   };
 
   return (
-    <div>
+    <div className={'flex flex-col'} style={{ width: '60vw' }}>
       {announcement.map((item, index) => (
         <div
           key={index}
-          className="mb-2 flex flex-row items-center justify-start gap-2 rounded bg-gray-100 px-4 py-1 text-blue-800"
+          className="mb-2 flex flex-row items-center justify-start gap-5 rounded bg-gray-100 px-4 py-1 text-blue-800"
           style={{ fontSize: '30px' }}
         >
-          {/* Markdown content */}
-          <div className={'border-2 bg-gray-300 px-3 py-1 my-2 font-bold'}>
-            ⏰ {formatTime(item.createdAt)}
+          <div
+            className={
+              'my-2 border-2 bg-gray-300 px-3 py-1 text-center font-bold'
+            }
+          >
+            {formatTime(item.createdAt)}
           </div>
-          <ReactMarkdown>{item.content}</ReactMarkdown>
+          <ReactMarkdown
+            components={{
+              code: ({ node, inline, className, children, ...props }) => {
+                // Style inline `code`
+                if (inline) {
+                  return (
+                    <code
+                      style={{
+                        padding: '0.2em 0.4em',
+                        margin: 0,
+                        fontSize: '85%',
+                        backgroundColor: 'rgba(48,48,58,0.14)',
+                        borderRadius: '3px',
+                      }}
+                    >
+                      {children}
+                    </code>
+                  );
+                }
+                // Handle block code if you'd like
+                return null;
+              },
+            }}
+          >
+            {item.content}
+          </ReactMarkdown>
         </div>
       ))}
     </div>
