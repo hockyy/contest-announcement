@@ -1,6 +1,6 @@
 {
-  "name": "dungeons-and-dracode",
-  "version": "3.0.0",
+  "name": "announcement",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
