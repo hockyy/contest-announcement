@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+import Announcement from '@/components/Announcement';
+
 export default function MyComponent() {
   const [todos, setTodos] = useState({
     announcement: [],
@@ -32,7 +34,6 @@ export default function MyComponent() {
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      if(todos.isPaused) return;
       const currentTime = Date.now();
 
       if (!todos.startTime || currentTime < todos.startTime) {
@@ -50,7 +51,7 @@ export default function MyComponent() {
           )}:${String(seconds).padStart(2, '0')}`
         );
         setStatusMessage('The contest will start in:');
-      } else {
+      } else if (!todos.isPaused) {
         const timeElapsedInSeconds = Math.floor(
           (currentTime - todos.startTime) / 1000
         );
@@ -60,22 +61,19 @@ export default function MyComponent() {
           setStatusMessage('Contest is done.');
           setTimeLeft('0:00:00');
         } else {
-          // Contest has started
-          if (!todos.isPaused) {
-            const timeRemainingInSeconds =
-              todos.durationInSeconds - timeElapsedInSeconds;
+          const timeRemainingInSeconds =
+            todos.durationInSeconds - timeElapsedInSeconds;
 
-            const hours = Math.floor(timeRemainingInSeconds / 3600);
-            const minutes = Math.floor((timeRemainingInSeconds % 3600) / 60);
-            const seconds = timeRemainingInSeconds % 60;
+          const hours = Math.floor(timeRemainingInSeconds / 3600);
+          const minutes = Math.floor((timeRemainingInSeconds % 3600) / 60);
+          const seconds = timeRemainingInSeconds % 60;
 
-            setTimeLeft(
-              `${hours}:${String(minutes).padStart(2, '0')}:${String(
-                seconds
-              ).padStart(2, '0')}`
-            );
-            setStatusMessage('Time left:');
-          }
+          setTimeLeft(
+            `${hours}:${String(minutes).padStart(2, '0')}:${String(
+              seconds
+            ).padStart(2, '0')}`
+          );
+          setStatusMessage('Time left:');
         }
       }
     }, 1000);
@@ -98,6 +96,7 @@ export default function MyComponent() {
           {timeLeft}
         </h1>
       </div>
+      <Announcement announcement={todos.announcement} />
     </div>
   );
 }
