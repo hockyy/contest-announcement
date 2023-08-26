@@ -33,6 +33,26 @@ const UpdatePage = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [announcement, setAnnouncement] = useState([]);
   const [showCreatedTime, setShowCreatedTime] = useState(false);
+  const [announcementJSON, setAnnouncementJSON] = useState('');
+  const [isJSONValid, setIsJSONValid] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleAnnouncementJSONChange = (e) => {
+    const newJSON = e.target.value;
+    try {
+      const parsed = JSON.parse(newJSON);
+      setAnnouncement(parsed);
+      setIsJSONValid(true);
+    } catch (err) {
+      console.log(err);
+      setIsJSONValid(false);
+    }
+    setAnnouncementJSON(newJSON);
+  };
+
   const fetchData = async () => {
     const response = await axios.get('/api/get');
     toast('OK resetted');
@@ -40,15 +60,15 @@ const UpdatePage = () => {
     setStartTime(new Date(response.data.startTime));
     setDuration(response.data.durationInSeconds);
     setIsPaused(response.data.isPaused);
-    setAnnouncement(response.data.announcement);
+    setAnnouncementJSON(JSON.stringify(response.data.announcement, null, 2));
+    handleAnnouncementJSONChange({
+      target: { value: JSON.stringify(response.data.announcement, null, 2) },
+    });
     setShowCreatedTime(response.data.showCreatedTime);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleUpdate = async () => {
+    if (!isJSONValid) return;
     const updatedTodos = {
       ...todos,
       startTime: startTime.getTime(),
@@ -135,8 +155,21 @@ const UpdatePage = () => {
             Show Created Time
           </div>
 
+          {/* Announcement JSON editor */}
+          <div className="mb-4">
+            <label className="mb-2 block text-sm font-bold text-gray-700">
+              Announcement JSON
+            </label>
+            <textarea
+              value={announcementJSON}
+              onChange={handleAnnouncementJSONChange}
+              className="h-40 w-full rounded border"
+            />
+          </div>
+
           {/* Update Button */}
           <BeautifulButton
+            disabled={!isJSONValid}
             buttonType={'primary'}
             message={'Update'}
             onClick={handleUpdate}

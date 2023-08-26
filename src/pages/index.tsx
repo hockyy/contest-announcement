@@ -9,8 +9,11 @@ export default function MyComponent() {
     startTime: null, // You could set a future start time here
     isPaused: false,
     durationInSeconds: 5 * 3600,
-    showCreatedTime: false
+    showCreatedTime: false,
   });
+
+  const [announcementJSON, setAnnouncementJSON] = useState('');
+  const [isJSONValid, setIsJSONValid] = useState(true);
 
   const [timeLeft, setTimeLeft] = useState('0:00:00');
   const [statusMessage, setStatusMessage] = useState(
@@ -108,7 +111,10 @@ export default function MyComponent() {
       >
         <strong style={{ fontSize: '30px' }}>📢 Announcement</strong>
       </div>
-      <Announcement announcement={todos.announcement} showCreatedTime={todos.showCreatedTime} />
+      <Announcement
+        announcement={todos.announcement}
+        showCreatedTime={todos.showCreatedTime}
+      />
     </div>
   );
 }
