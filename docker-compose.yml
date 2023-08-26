@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    container_name: fe-dnd
+    container_name: announcement
     build: .
     ports:
       - "3069:3000"
@@ -10,8 +10,8 @@ services:
       - NODE_ENV=production
     restart: always
 
-
-networks:
-  default:
-    name: dnd
-    external: true
+#
+#networks:
+#  default:
+#    name: dnd
+#    external: true
