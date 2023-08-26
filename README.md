@@ -1,5 +1,8 @@
 # Contest Announcements
 
+NPM version `v18.15.0`
+Demo: [https://contest.hocky.id/](https://contest.hocky.id/), [https://contest.hocky.id/edit](https://contest.hocky.id/edit)
+
 ## End points
 
 - `/`
