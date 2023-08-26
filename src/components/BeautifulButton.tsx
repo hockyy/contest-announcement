@@ -10,6 +10,7 @@ export const BeautifulButton = ({
 }) => {
   return (
     <AwesomeButton
+      style={{ zIndex: '0' }}
       ripple={true}
       cssModule={AwesomeButtonStyles}
       type={buttonType}

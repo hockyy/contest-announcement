@@ -28,19 +28,10 @@ const Main = (props: IMainProps) => {
       <div className="w-5/6 place-self-center lg:w-2/3">
         <div className="content w-full pb-5 text-xl ">{props.children}</div>
       </div>
-      <img
-        className={'unselectable fixed z-10 min-w-[500px] overflow-hidden'}
-        src={`${router.basePath}/assets/snow.png`}
-        alt={'Snowpile'}
-        style={{ top: `${mini}vh` }}
-      ></img>
-      <div className="py-8 px-4 text-center text-sm">
-        © Copyright {new Date().getFullYear()} {AppConfig.title}. Made with{' '}
-        <span role="img" aria-label="Love">
-          ♥
-        </span>{' '}
-        by <a href="https://instagram.com/__hocky"> Hocky Yudhiono &#127808;</a>
-        . Repository setup by{' '}
+      <div className="px-4 py-8 text-center text-sm">
+        © Copyright {new Date().getFullYear()} {AppConfig.title}. Made by{' '}
+        <a href="https://instagram.com/__hocky"> Hocky Yudhiono &#127808;</a>.
+        Repository setup by{' '}
         <a href="https://creativedesignsguru.com"> CreativeDesignsGuru</a>.
         {/*
          * PLEASE READ THIS SECTION

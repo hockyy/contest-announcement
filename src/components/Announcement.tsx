@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ReactMarkdown from 'react-markdown';
 
-const Announcement = ({ announcement }) => {
+const Announcement = ({ announcement, showCreatedTime }) => {
   const formatTime = (timestamp) => {
     const date = new Date(timestamp);
     const hours = String(date.getHours()).padStart(2, '0');
@@ -15,16 +15,18 @@ const Announcement = ({ announcement }) => {
       {announcement.map((item, index) => (
         <div
           key={index}
-          className="mb-2 flex flex-row items-center justify-start gap-5 rounded bg-gray-100 px-4 py-1 text-blue-800"
+          className="mb-2 flex flex-row items-center justify-start gap-5 rounded bg-gray-100 px-4 py-2 text-blue-800"
           style={{ fontSize: '30px', fontWeight: '500' }}
         >
-          <div
-            className={
-              'my-2 border-2 bg-gray-300 px-3 py-1 text-center font-bold'
-            }
-          >
-            {formatTime(item.createdAt)}
-          </div>
+          {showCreatedTime && (
+            <div
+              className={
+                'my-2 border-2 bg-gray-300 px-3 py-1 text-center font-bold'
+              }
+            >
+              {formatTime(item.createdAt)}
+            </div>
+          )}
           <ReactMarkdown
             components={{
               strong: ({ node, ...props }) => (

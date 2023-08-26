@@ -9,6 +9,7 @@ export default function MyComponent() {
     startTime: null, // You could set a future start time here
     isPaused: false,
     durationInSeconds: 5 * 3600,
+    showCreatedTime: false
   });
 
   const [timeLeft, setTimeLeft] = useState('0:00:00');
@@ -102,12 +103,12 @@ export default function MyComponent() {
         {timeLeft}
       </div>
       <div
-        id="status-message"
+        id="announcement header"
         className={'mb-2 flex flex-col items-center justify-center gap-4'}
       >
         <strong style={{ fontSize: '30px' }}>📢 Announcement</strong>
       </div>
-      <Announcement announcement={todos.announcement} />
+      <Announcement announcement={todos.announcement} showCreatedTime={todos.showCreatedTime} />
     </div>
   );
 }
