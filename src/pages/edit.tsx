@@ -64,6 +64,7 @@ const UpdatePage = () => {
       target: { value: JSON.stringify(response.data.announcement, null, 2) },
     });
     setShowCreatedTime(response.data.showCreatedTime);
+    setLanguage(response.data.language);
   };
 
   useEffect(() => {
