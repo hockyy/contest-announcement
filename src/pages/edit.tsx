@@ -6,7 +6,6 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { time } from '@motionone/utils';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
