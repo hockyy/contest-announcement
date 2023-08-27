@@ -9,6 +9,8 @@ interface Todo {
   isPaused: boolean;
   durationInSeconds: number;
   showAnnouncementCreatedTime: boolean;
+  fontSize: string;
+  language: string;
 }
 
 let todos: Todo = {
@@ -31,6 +33,8 @@ let todos: Todo = {
   isPaused: false,
   durationInSeconds: 5 * 3600,
   showAnnouncementCreatedTime: true,
+  fontSize: '50px',
+  language: 'en',
 };
 
 export function getTodos() {

@@ -35,6 +35,7 @@ const UpdatePage = () => {
   const [showCreatedTime, setShowCreatedTime] = useState(false);
   const [announcementJSON, setAnnouncementJSON] = useState('');
   const [isJSONValid, setIsJSONValid] = useState(true);
+  const [fontSize, setFontSize] = useState('30px');
 
   const handleAnnouncementJSONChange = (e) => {
     const newJSON = e.target.value;
@@ -55,6 +56,7 @@ const UpdatePage = () => {
     setTodos(response.data);
     setStartTime(new Date(response.data.startTime));
     setDuration(response.data.durationInSeconds);
+    setFontSize(response.data.fontSize);
     setIsPaused(response.data.isPaused);
     setAnnouncementJSON(JSON.stringify(response.data.announcement, null, 2));
     handleAnnouncementJSONChange({
@@ -76,6 +78,7 @@ const UpdatePage = () => {
       isPaused,
       announcement,
       showCreatedTime,
+      fontSize,
     };
 
     await axios
@@ -123,6 +126,19 @@ const UpdatePage = () => {
               type="number"
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
+              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            />
+          </div>
+
+          {/* Font Size */}
+          <div className="mb-4">
+            <label className="mb-2 block text-sm font-bold text-gray-700">
+              Font Size of Announcements
+            </label>
+            <input
+              type="text"
+              value={fontSize}
+              onChange={(e) => setFontSize(e.target.value)}
               className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
             />
           </div>
@@ -189,6 +205,7 @@ const UpdatePage = () => {
         <div>
           <Announcement
             announcement={announcement}
+            fontSize={fontSize}
             showCreatedTime={showCreatedTime}
           ></Announcement>
         </div>

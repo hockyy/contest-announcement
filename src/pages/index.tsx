@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import Announcement from '@/components/Announcement';
+import { StringConstants } from '@/components/StringConstants';
 
 export default function MyComponent() {
   const [todos, setTodos] = useState({
@@ -10,6 +11,8 @@ export default function MyComponent() {
     isPaused: false,
     durationInSeconds: 5 * 3600,
     showCreatedTime: false,
+    fontSize: '30px',
+    language: 'en',
   });
 
   const [announcementJSON, setAnnouncementJSON] = useState('');
@@ -17,7 +20,7 @@ export default function MyComponent() {
 
   const [timeLeft, setTimeLeft] = useState('0:00:00');
   const [statusMessage, setStatusMessage] = useState(
-    'The contest will start in:'
+    StringConstants.contestWillStart[todos.language]
   );
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export default function MyComponent() {
             '0'
           )}:${String(seconds).padStart(2, '0')}`
         );
-        setStatusMessage('The contest will start in:');
+        setStatusMessage(StringConstants.contestWillStart[todos.language]);
       } else if (!todos.isPaused) {
         const timeElapsedInSeconds = Math.floor(
           (currentTime - todos.startTime) / 1000
@@ -62,7 +65,7 @@ export default function MyComponent() {
 
         if (timeElapsedInSeconds >= todos.durationInSeconds) {
           // Contest is done
-          setStatusMessage('Contest is done.');
+          setStatusMessage(StringConstants.contestDone[todos.language]);
           setTimeLeft('0:00:00');
         } else {
           const timeRemainingInSeconds =
@@ -77,7 +80,7 @@ export default function MyComponent() {
               seconds
             ).padStart(2, '0')}`
           );
-          setStatusMessage('Time left:');
+          setStatusMessage(StringConstants.timeLeft[todos.language]);
         }
       }
     }, 80);
@@ -112,6 +115,7 @@ export default function MyComponent() {
         <strong style={{ fontSize: '30px' }}>📢 Announcement</strong>
       </div>
       <Announcement
+        fontSize={todos.fontSize}
         announcement={todos.announcement}
         showCreatedTime={todos.showCreatedTime}
       />
