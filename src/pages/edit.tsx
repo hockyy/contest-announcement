@@ -36,6 +36,7 @@ const UpdatePage = () => {
   const [announcementJSON, setAnnouncementJSON] = useState('');
   const [isJSONValid, setIsJSONValid] = useState(true);
   const [fontSize, setFontSize] = useState('30px');
+  const [language, setLanguage] = useState('en');
 
   const handleAnnouncementJSONChange = (e) => {
     const newJSON = e.target.value;
@@ -79,6 +80,7 @@ const UpdatePage = () => {
       announcement,
       showCreatedTime,
       fontSize,
+      language,
     };
 
     await axios
@@ -139,6 +141,19 @@ const UpdatePage = () => {
               type="text"
               value={fontSize}
               onChange={(e) => setFontSize(e.target.value)}
+              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            />
+          </div>
+
+          {/* Font Size */}
+          <div className="mb-4">
+            <label className="mb-2 block text-sm font-bold text-gray-700">
+              Language Option
+            </label>
+            <input
+              type="text"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
               className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
             />
           </div>

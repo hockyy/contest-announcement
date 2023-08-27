@@ -11,4 +11,12 @@ export const StringConstants = {
     en: 'Time left',
     id: 'Sisa waktu',
   },
+  pause: {
+    en: 'Paused',
+    id: 'Tertunda',
+  },
+  announcement: {
+    en: 'Announcement',
+    id: 'Pengumuman',
+  },
 };

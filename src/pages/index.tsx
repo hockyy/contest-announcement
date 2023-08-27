@@ -99,7 +99,7 @@ export default function MyComponent() {
             className="rounded bg-red-500 px-2 py-1 text-white"
             style={{ fontSize: '30px' }}
           >
-            Paused
+            {StringConstants.pause[todos.language]}
           </div>
         ) : null}
         <strong style={{ fontSize: '30px' }}>⏳ {statusMessage}</strong>
@@ -112,7 +112,9 @@ export default function MyComponent() {
         id="announcement header"
         className={'mb-2 flex flex-col items-center justify-center gap-4'}
       >
-        <strong style={{ fontSize: '30px' }}>📢 Announcement</strong>
+        <strong style={{ fontSize: '30px' }}>
+          📢 {StringConstants.announcement[todos.language]}
+        </strong>
       </div>
       <Announcement
         fontSize={todos.fontSize}
