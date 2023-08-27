@@ -15,9 +15,6 @@ export default function MyComponent() {
     language: 'en',
   });
 
-  const [announcementJSON, setAnnouncementJSON] = useState('');
-  const [isJSONValid, setIsJSONValid] = useState(true);
-
   const [timeLeft, setTimeLeft] = useState('0:00:00');
   const [statusMessage, setStatusMessage] = useState(
     StringConstants.contestWillStart[todos.language]

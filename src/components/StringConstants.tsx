@@ -19,4 +19,8 @@ export const StringConstants = {
     en: 'Announcement',
     id: 'Pengumuman',
   },
+  previewAnnouncement: {
+    en: 'Preview Announcement',
+    id: 'Pratinjau Pengumuman',
+  },
 };

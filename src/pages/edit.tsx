@@ -6,6 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { Select } from '@material-tailwind/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -14,6 +15,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import Announcement from '@/components/Announcement';
 import { BeautifulButton } from '@/components/BeautifulButton';
+import { StringConstants } from '@/components/StringConstants';
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
@@ -149,14 +151,18 @@ const UpdatePage = () => {
           {/* Font Size */}
           <div className="mb-4">
             <label className="mb-2 block text-sm font-bold text-gray-700">
-              Language Option
+              Language
             </label>
-            <input
-              type="text"
-              value={language}
+
+            <select
               onChange={(e) => setLanguage(e.target.value)}
-              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-            />
+              name={'language'}
+              value={language}
+              defaultValue={'id'}
+            >
+              <option value="id">Bahasa Indonesia</option>
+              <option value="en">English</option>
+            </select>
           </div>
 
           {/* Is Paused */}
@@ -216,7 +222,9 @@ const UpdatePage = () => {
           id="preview-header"
           className={'mb-2 flex flex-col items-center justify-center gap-4'}
         >
-          <strong style={{ fontSize: '30px' }}>📢 Announcement Preview</strong>
+          <strong style={{ fontSize: '30px' }}>
+            📢 {StringConstants.previewAnnouncement[language]}
+          </strong>
         </div>
         <div>
           <Announcement
