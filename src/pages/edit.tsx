@@ -6,6 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { time } from '@motionone/utils';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -37,6 +38,7 @@ const UpdatePage = () => {
   const [announcementJSON, setAnnouncementJSON] = useState('');
   const [isJSONValid, setIsJSONValid] = useState(true);
   const [announcementFontSize, setAnnouncementFontSize] = useState('30px');
+  const [timeFontSize, setTimeFontSize] = useState('100px');
   const [language, setLanguage] = useState('en');
 
   const handleAnnouncementJSONChange = (e) => {
@@ -59,6 +61,7 @@ const UpdatePage = () => {
     setStartTime(new Date(response.data.startTime));
     setDuration(response.data.durationInSeconds);
     setAnnouncementFontSize(response.data.announcementFontSize);
+    setTimeFontSize(response.data.timeFontSize);
     setIsPaused(response.data.isPaused);
     setAnnouncementJSON(JSON.stringify(response.data.announcement, null, 2));
     handleAnnouncementJSONChange({
@@ -82,6 +85,7 @@ const UpdatePage = () => {
       announcement,
       showCreatedTime,
       announcementFontSize,
+      timeFontSize,
       language,
     };
 
@@ -147,7 +151,20 @@ const UpdatePage = () => {
             />
           </div>
 
-          {/* Font Size */}
+          {/* Time Font Size */}
+          <div className="mb-4">
+            <label className="mb-2 block text-sm font-bold text-gray-700">
+              Font Size of Time
+            </label>
+            <input
+              type="text"
+              value={timeFontSize}
+              onChange={(e) => setTimeFontSize(e.target.value)}
+              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            />
+          </div>
+
+          {/* Language */}
           <div className="mb-4">
             <label className="mb-2 block text-sm font-bold text-gray-700">
               Language
@@ -219,6 +236,14 @@ const UpdatePage = () => {
             onClick={fetchData}
           />
         </div>
+
+        <div
+          id="timeLeft"
+          className={'m-0 p-0'}
+          style={{ fontSize: timeFontSize }}
+        >
+          {'4:23:36'}
+        </div>
         <div
           id="preview-header"
           className={'mb-2 flex flex-col items-center justify-center gap-4'}
@@ -231,6 +256,7 @@ const UpdatePage = () => {
           <Announcement
             announcement={announcement}
             announcementFontSize={announcementFontSize}
+            timeFontSize={timeFontSize}
             showCreatedTime={showCreatedTime}
           ></Announcement>
         </div>

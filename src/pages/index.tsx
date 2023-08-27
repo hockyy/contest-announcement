@@ -122,6 +122,7 @@ export default function MyComponent() {
         announcementFontSize={todos.announcementFontSize}
         announcement={todos.announcement}
         showCreatedTime={todos.showCreatedTime}
+        timeFontSize={todos.timeFontSize}
       />
     </div>
   );

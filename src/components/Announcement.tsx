@@ -6,6 +6,7 @@ const Announcement = ({
   announcement,
   showCreatedTime,
   announcementFontSize = '30px',
+  timeFontSize = '100px',
 }) => {
   const formatTime = (timestamp) => {
     const date = new Date(timestamp);
