@@ -6,7 +6,6 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Select } from '@material-tailwind/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -37,7 +36,7 @@ const UpdatePage = () => {
   const [showCreatedTime, setShowCreatedTime] = useState(false);
   const [announcementJSON, setAnnouncementJSON] = useState('');
   const [isJSONValid, setIsJSONValid] = useState(true);
-  const [fontSize, setFontSize] = useState('30px');
+  const [announcementFontSize, setAnnouncementFontSize] = useState('30px');
   const [language, setLanguage] = useState('en');
 
   const handleAnnouncementJSONChange = (e) => {
@@ -59,7 +58,7 @@ const UpdatePage = () => {
     setTodos(response.data);
     setStartTime(new Date(response.data.startTime));
     setDuration(response.data.durationInSeconds);
-    setFontSize(response.data.fontSize);
+    setAnnouncementFontSize(response.data.announcementFontSize);
     setIsPaused(response.data.isPaused);
     setAnnouncementJSON(JSON.stringify(response.data.announcement, null, 2));
     handleAnnouncementJSONChange({
@@ -82,7 +81,7 @@ const UpdatePage = () => {
       isPaused,
       announcement,
       showCreatedTime,
-      fontSize,
+      announcementFontSize,
       language,
     };
 
@@ -142,8 +141,8 @@ const UpdatePage = () => {
             </label>
             <input
               type="text"
-              value={fontSize}
-              onChange={(e) => setFontSize(e.target.value)}
+              value={announcementFontSize}
+              onChange={(e) => setAnnouncementFontSize(e.target.value)}
               className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
             />
           </div>
@@ -155,6 +154,8 @@ const UpdatePage = () => {
             </label>
 
             <select
+              className={'rounded-lg p-2'}
+              style={{ border: 'solid lightgray' }}
               onChange={(e) => setLanguage(e.target.value)}
               name={'language'}
               value={language}
@@ -229,7 +230,7 @@ const UpdatePage = () => {
         <div>
           <Announcement
             announcement={announcement}
-            fontSize={fontSize}
+            announcementFontSize={announcementFontSize}
             showCreatedTime={showCreatedTime}
           ></Announcement>
         </div>

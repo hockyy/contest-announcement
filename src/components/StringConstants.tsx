@@ -12,8 +12,8 @@ export const StringConstants = {
     id: 'Sisa waktu',
   },
   pause: {
-    en: 'Paused',
-    id: 'Tertunda',
+    en: 'Contest Paused',
+    id: 'Kontest Ditunda',
   },
   announcement: {
     en: 'Announcement',

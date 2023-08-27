@@ -11,7 +11,8 @@ export default function MyComponent() {
     isPaused: false,
     durationInSeconds: 5 * 3600,
     showCreatedTime: false,
-    fontSize: '30px',
+    announcementFontSize: '30px',
+    timeFontSize: '100px',
     language: 'en',
   });
 
@@ -102,7 +103,11 @@ export default function MyComponent() {
         <strong style={{ fontSize: '30px' }}>⏳ {statusMessage}</strong>
       </div>
       {/* Header */}
-      <div id="timeLeft" className={'m-0 p-0'} style={{ fontSize: '200px' }}>
+      <div
+        id="timeLeft"
+        className={'m-0 p-0'}
+        style={{ fontSize: todos.timeFontSize }}
+      >
         {timeLeft}
       </div>
       <div
@@ -114,7 +119,7 @@ export default function MyComponent() {
         </strong>
       </div>
       <Announcement
-        fontSize={todos.fontSize}
+        announcementFontSize={todos.announcementFontSize}
         announcement={todos.announcement}
         showCreatedTime={todos.showCreatedTime}
       />

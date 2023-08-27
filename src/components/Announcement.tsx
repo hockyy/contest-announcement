@@ -2,7 +2,11 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ReactMarkdown from 'react-markdown';
 
-const Announcement = ({ announcement, showCreatedTime, fontSize = '30px' }) => {
+const Announcement = ({
+  announcement,
+  showCreatedTime,
+  announcementFontSize = '30px',
+}) => {
   const formatTime = (timestamp) => {
     const date = new Date(timestamp);
     const hours = String(date.getHours()).padStart(2, '0');
@@ -11,12 +15,17 @@ const Announcement = ({ announcement, showCreatedTime, fontSize = '30px' }) => {
   };
 
   return (
-    <div className={'flex flex-col'} style={{ width: '60vw' }}>
+    <div
+      className={'flex flex-col'}
+      style={{ width: '60vw', fontSize: announcementFontSize }}
+    >
       {announcement.map((item, index) => (
         <div
           key={index}
           className="mb-2 flex flex-row items-center justify-start gap-5 rounded bg-gray-100 px-4 py-2 text-blue-800"
-          style={{ fontSize, fontWeight: '500' }}
+          style={{
+            fontWeight: '500',
+          }}
         >
           {showCreatedTime && (
             <div

@@ -9,7 +9,8 @@ interface Todo {
   isPaused: boolean;
   durationInSeconds: number;
   showAnnouncementCreatedTime: boolean;
-  fontSize: string;
+  announcementFontSize: string;
+  timeFontSize: string;
   language: string;
 }
 
@@ -33,7 +34,8 @@ let todos: Todo = {
   isPaused: false,
   durationInSeconds: 5 * 3600,
   showAnnouncementCreatedTime: true,
-  fontSize: '50px',
+  announcementFontSize: '50px',
+  timeFontSize: '200px',
   language: 'en',
 };
 
